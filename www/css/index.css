@@ -1,0 +1,286 @@
+@import url("base.css");
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+
+nav {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  background-color: var(--background);
+}
+
+.header-wrapper {
+  height: 4.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  padding-top: 0.75rem;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.nav-wrapper {
+  height: 5.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.nav-wrapper button {
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.screen {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 42.375rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: var(--primary);
+}
+
+.btn-ghost {
+  color: var(--text-secondary);
+  background-color: transparent;
+  border-color: var(--border);
+}
+
+.btn-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: var(--radius);
+}
+
+.btn-link {
+  padding: 0;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-link:active {
+  opacity: 0.7;
+}
+
+.btn-link:focus-visible {
+  outline: 0.125rem solid var(--primary);
+  outline-offset: 0.125rem;
+  border-radius: var(--radius);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--text-primary);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.875rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 0.125rem solid var(--text-secondary);
+  border-bottom: 0.125rem solid var(--text-secondary);
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+.form-message {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.form-message.error,
+.form-message.success {
+  display: block;
+}
+
+.form-message.error {
+  color: var(--error);
+}
+
+.form-message.success {
+  color: var(--primary);
+}
+
+input.error,
+select.error {
+  border-color: var(--error);
+}
+
+input.success,
+select.success {
+  border-color: var(--primary);
+}
+
+.form-header {
+  margin-bottom: 1.5rem;
+}
+
+.form-eyebrow {
+  margin-bottom: 0.25rem;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-header h1 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.form-description {
+  margin-top: 0.375rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.profile-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.profile-value {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2rem 0;
+}
+
+.home-hero svg {
+  color: var(--primary);
+}
+
+.home-hero h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.back-to-home {
+  padding: 12px 0;
+}
+
+#add-profile-btn {
+  margin: 12px 0;
+}

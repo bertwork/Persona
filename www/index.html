@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Customize this policy to fit your own app's needs. For more guidance, please refer to the docs: https://cordova.apache.org/docs/en/latest/
+      Some notes:
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Persona</title>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Toast -->
+      <div
+        id="toast-container"
+        class="toast-container"
+        aria-live="polite"
+      ></div>
+      <header class="app-header">
+        <div class="container header-wrapper">
+          <!-- Logo -->
+          <div class="app-logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-square-user-round-icon lucide-square-user-round"
+            >
+              <path d="M18 21a6 6 0 0 0-12 0" />
+              <circle cx="12" cy="11" r="4" />
+              <rect width="18" height="18" x="3" y="3" rx="2" />
+            </svg>
+            <span>Pesona</span>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="btn btn-icon btn-ghost btn-link">
+            <!-- dark icon -->
+            <svg
+              id="theme-dark"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-sun-icon lucide-sun"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2" />
+              <path d="M12 20v2" />
+              <path d="m4.93 4.93 1.41 1.41" />
+              <path d="m17.66 17.66 1.41 1.41" />
+              <path d="M2 12h2" />
+              <path d="M20 12h2" />
+              <path d="m6.34 17.66-1.41 1.41" />
+              <path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+
+            <!-- light icon -->
+            <svg
+              id="theme-light"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-moon-icon lucide-moon hidden"
+            >
+              <path
+                d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="container">
+        <!-- Home Screen -->
+        <section id="home" data-screen="home-screen" class="screen hidden">
+          <div class="home-hero">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 21a6 6 0 0 0-12 0" />
+              <circle cx="12" cy="11" r="4" />
+              <rect width="18" height="18" x="3" y="3" rx="2" />
+            </svg>
+            <h1>Pesona</h1>
+            <p class="form-description">
+              Welcome to Pesona! Your profile stays right on your device.
+            </p>
+          </div>
+          <div class="home-actions">
+            <button
+              id="home-view-profile-btn"
+              class="btn btn-primary"
+              type="button"
+            >
+              View Profile
+            </button>
+            <button id="home-about-btn" class="btn btn-ghost" type="button">
+              About
+            </button>
+          </div>
+        </section>
+
+        <!-- Profile Screen -->
+        <section
+          id="profile"
+          data-screen="profile-screen"
+          class="active screen"
+        >
+          <header class="profile-header">
+            <button
+              id="profile-back-btn"
+              class="btn btn-link back-to-home"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-left-icon lucide-arrow-left"
+              >
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+              </svg>
+              Back
+            </button>
+            <h1>Profile</h1>
+          </header>
+          <div id="profile-content"></div>
+        </section>
+
+        <!-- About Screen -->
+        <section id="about" data-screen="about-screen" class="hidden screen">
+          <header class="about-header">
+            <button
+              id="about-back-btn"
+              class="btn btn-link back-to-home"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-left-icon lucide-arrow-left"
+              >
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+              </svg>
+              Back
+            </button>
+            <h1>About</h1>
+          </header>
+          <div>
+            <div class="profile-field">
+              <span class="profile-label">App Name</span
+              ><span class="profile-value">Pesona</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label">Developer</span
+              ><span class="profile-value">BertQT</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label">Course/Section</span
+              ><span class="profile-value">BSCS 2A</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-label">School</span
+              ><span class="profile-value">Bicol University - Polangui</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Add Profile Screen -->
+        <section
+          id="registration"
+          data-screen="registration-screen"
+          class="screen hidden"
+        >
+          <header class="form-header">
+            <p class="form-eyebrow">Student Information</p>
+            <h1 id="form-title">Registration Form</h1>
+            <p class="form-description">
+              Please fill in your information below.
+            </p>
+          </header>
+          <form id="registration-form" class="form">
+            <div class="form-group">
+              <label for="student-name">Name *</label>
+              <input
+                type="text"
+                id="student-name"
+                placeholder="Juan Dela Cruz"
+              />
+              <p id="student-name-message" class="form-message"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="student-id">Student ID *</label>
+              <input type="text" id="student-id" placeholder="2025-01-12345" />
+              <p id="student-id-message" class="form-message"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="course">Course *</label>
+
+              <div class="select-wrapper">
+                <select id="course">
+                  <option value="" selected disabled>Select your course</option>
+                  <option value="bscs">BS Computer Science</option>
+                  <option value="bsit">BS Information Technology</option>
+                  <option value="bsis">BS Information Systems</option>
+                </select>
+              </div>
+
+              <p id="course-message" class="form-message"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="year-level">Year Level *</label>
+
+              <div class="select-wrapper">
+                <select id="year-level">
+                  <option value="" selected disabled>
+                    Select your year level
+                  </option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+              </div>
+
+              <p id="year-level-message" class="form-message"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" placeholder="email@example.com" />
+              <p id="email-message" class="form-message"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-number">Contact Number *</label>
+              <input
+                type="tel"
+                id="contact-number"
+                placeholder="09123456789"
+                minlength="11"
+                maxlength="11"
+              />
+              <p id="contact-number-message" class="form-message"></p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+            <button
+              type="button"
+              id="cancel-edit-btn"
+              class="btn btn-ghost hidden"
+            >
+              Cancel
+            </button>
+          </form>
+        </section>
+      </main>
+      <nav>
+        <div class="container nav-wrapper">
+          <button id="nav-home" class="btn btn-link active">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-house-icon lucide-house"
+            >
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+              <path
+                d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              />
+            </svg>
+            Home
+          </button>
+          <button id="nav-add-profile" class="btn btn-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-user-round-plus-icon lucide-user-round-plus"
+            >
+              <path d="M2 21a8 8 0 0 1 13.292-6" />
+              <circle cx="10" cy="8" r="5" />
+              <path d="M19 16v6" />
+              <path d="M22 19h-6" />
+            </svg>
+            <span id="nav-add-profile-label">Add Profile</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <script src="cordova.js"></script>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

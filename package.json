@@ -1,0 +1,25 @@
+{
+  "name": "com.bertqt.persona",
+  "displayName": "Persona",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "android": "cordova clean android && cordova run android"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^15.1.0",
+    "cordova-browser": "^7.0.0"
+  },
+  "cordova": {
+    "platforms": [
+      "browser",
+      "android"
+    ]
+  }
+}
